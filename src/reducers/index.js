@@ -3,7 +3,7 @@ import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from "../actions/types";
 
 // Initial state
 
-const initialState = {
+export const initialState = {
   data: [
     {
       id: 1,
