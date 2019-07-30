@@ -1,19 +1,18 @@
 import React from "react";
 import Item from "./Item.js";
-
+import { Card } from "semantic-ui-react";
 function Category(props) {
-  //const boxes = props.topNine;
-  console.log("props", props);
+  const boxes = props.topNine;
 
   return (
-    <div className="category-container">
-      <p>this is a catergory</p>
+    <Card className="category">
+      <Card.Header>{props.categoryTitle}</Card.Header>
       <section className="top-nine-box">
-        {/* {boxes.map(box => (
-          <Item box={box} />
-        ))} */}
+        {boxes.map(box => (
+          <Item name={box.name} />
+        ))}
       </section>
-    </div>
+    </Card>
   );
 }
 

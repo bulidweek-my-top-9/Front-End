@@ -1,8 +1,9 @@
 // Dependencies
 import React from "react";
 import ReactDOM from "react-dom";
-import Category from "./components/Category.js";
+import CategoryList from "./components/CategoryList.js";
 import { Provider } from "react-redux";
+//import "semantic-ui-css/semantic.css";
 
 // Objects
 import App from "./App";
@@ -13,8 +14,9 @@ import "./index.css";
 
 const AppWithProvider = (
   <Provider store={store}>
-    <App />
-    <Category />
+    {/*<App />*/}
+    <h1>My Top Nine</h1>
+    <CategoryList />
   </Provider>
 );
 

@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 // Styles
 
 const Data = props => {
-  console.log("Data props", props);
+  //console.log("Data props", props);
   return (
     <div>
       <div>Data rendering</div>

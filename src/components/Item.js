@@ -1,9 +1,9 @@
 import React from "react";
-
-function Item() {
+import { Flag } from "semantic-ui-react";
+function Item(props) {
   return (
-    <div className="item-container">
-      <p>Item Name</p>
+    <div className="item">
+      <p>{props.name}</p>
     </div>
   );
 }
