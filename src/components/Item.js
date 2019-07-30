@@ -1,9 +1,18 @@
-import React from "react";
-import { Flag } from "semantic-ui-react";
+import React, { useState } from "react";
+
+import { Icon } from "semantic-ui-react";
+
 function Item(props) {
+  //const [isEditing, setIsEditing] = useState(false);
+
+  console.log("Item props", props);
+
   return (
     <div className="item">
-      <p>{props.name}</p>
+      <Icon name="edit" />
+      <div>
+        <p>{props.name}</p>
+      </div>
     </div>
   );
 }
