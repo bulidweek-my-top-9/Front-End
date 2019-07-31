@@ -6,21 +6,19 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import DataList from "./components/DataList.js";
 import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount.js";
+import PrivateRoute from "./components/PrivateRoute";
 
 // Stylings
 import "./App.css";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <h1>My Top Nine</h1>
-        {/* <Login /> */}
-        <Route path="/login" component={Login} />
-        <Route path="/create" component={CreateAccount} />
-        <DataList />
-      </div>
-    </Router>
+    <div className="App">
+      <h1>My Top Nine</h1>
+      <Route exact path="/" component={Login} />
+      <Route exact path="/create" component={CreateAccount} />
+      <PrivateRoute path="/home" component={DataList} />
+    </div>
   );
 }
 
