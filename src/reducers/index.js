@@ -104,8 +104,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         loggingIn: false,
-        error: null,
-        token: localStorage.getItem("token")
+        error: null
       };
     case LOGIN_ERROR:
       return {
