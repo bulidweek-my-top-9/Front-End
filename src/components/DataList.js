@@ -4,19 +4,19 @@ import { connect } from "react-redux";
 
 // Objects
 import Data from "./Data";
-import Loader from "react-loader-spinner";
+//import Loader from "react-loader-spinner";
 import { fetchApi } from "../actions";
 
 // Styles
 
 const DataList = props => {
-  const [user, setUser] = useState([0]);
   useEffect(() => {
     props.fetchApi();
   }, []);
 
   const categories = props.data[user].categories;
 
+  const categories = props.data[0].categories;
   // if (props.isFetching) {
   //   return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
   // }
