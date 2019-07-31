@@ -19,8 +19,9 @@ const Login = props => {
   const login = event => {
     console.log("login credentials", credentials);
     event.preventDefault();
-    props.login(credentials);
-    // use .then to push to page once hooked up
+    props.login(credentials).then(() => {
+      props.history.push("/home");
+    });
     setCredentials({
       username: "",
       password: ""
