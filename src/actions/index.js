@@ -75,3 +75,41 @@ export const login = creds => dispatch => {
       dispatch({ type: LOGIN_ERROR, payload: error.response.data.error });
     });
 };
+
+export const addTopNine = newTopNine => dispatch => {
+  dispatch({ type: ADD_TOP_NINE_START });
+  axios
+    .post("https://api-here.com/", newTopNine, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(response => {
+      console.log("addTopNine response.data", response.data);
+      dispatch({ type: ADD_TOP_NINE_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("addTopNine error", error);
+      dispatch({
+        type: ADD_HABIT_ERROR,
+        payload: error.response.data.error
+      });
+    });
+};
+
+export const deleteTopNine = id => dispatch => {
+  dispatch({ type: DELETE_TOP_NINE_START });
+  axios
+    .delete(`"https://api-here.com/"${id}`, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(response => {
+      console.log("deleteTopNine response.data", response.data);
+      dispatch({ type: DELETE_TOP_NINE_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("deleteTopNine error", error);
+      dispatch({
+        type: DELETE_TOP_NINE_ERROR,
+        payload: error
+      });
+    });
+};
