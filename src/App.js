@@ -1,7 +1,7 @@
 // Dependencies
 import React from "react";
 import { Route } from "react-router-dom";
-import Data from "./components/Data.js"
+import Data from "./components/Data.js";
 
 // Objects
 import DataList from "./components/DataList.js";
@@ -19,12 +19,17 @@ function App() {
       <Route exact path="/" component={Login} />
       <Route exact path="/create" component={CreateAccount} />
 
-      <Route path="/home" component={DataList} />
-      <Route path="/home/categories/:categoryTitle" render={props => <Data {...props}/>} />
+      <PrivateRoute path="/home" component={DataList} />
+      <PrivateRoute
+        path="/home/categories/:categoryTitle"
+        render={props => <Data {...props} />}
+      />
     </div>
   );
 }
 
 export default App;
 
-{/* <PrivateRoute path="/home" component={DataList} /> */}
+{
+  /* <PrivateRoute path="/home" component={DataList} /> */
+}
