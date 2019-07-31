@@ -27,7 +27,7 @@ blue: #101B2D
   align-items: center;
   width: 100%;
 }
-
+/* 
 .ui.card.category {
   width: 300px;
   display: flex;
@@ -50,6 +50,7 @@ blue: #101B2D
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
 }
 
 .item {
@@ -60,4 +61,4 @@ blue: #101B2D
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
