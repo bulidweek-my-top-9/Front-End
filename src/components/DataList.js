@@ -10,13 +10,10 @@ import { fetchApi } from "../actions";
 // Styles
 
 const DataList = props => {
-  useEffect(() => {
-    props.fetchApi();
-  }, []);
+  // useEffect(() => {
+  //   props.fetchApi();
+  // }, []);
 
-  const categories = props.data[user].categories;
-
-  const categories = props.data[0].categories;
   // if (props.isFetching) {
   //   return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
   // }
@@ -25,13 +22,13 @@ const DataList = props => {
   return (
     <section className="category-list">
       <div id="card-container">
-        {categories.map(cate => (
+        {/* {categories.map(cate => (
           <Data
             key={cate.id}
             categoryTitle={cate.categoryTitle}
             topNine={cate.topNine}
           />
-        ))}
+        ))} */}
       </div>
     </section>
   );
