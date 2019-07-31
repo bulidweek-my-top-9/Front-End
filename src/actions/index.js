@@ -113,3 +113,22 @@ export const deleteTopNine = id => dispatch => {
       });
     });
 };
+
+export const updateTopNine = topNine => dispatch => {
+  dispatch({ type: UPDATE_TOP_NINE_START });
+  axios
+    .put(`"https://api-here.com/"${topNine.id}`, topNine, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(response => {
+      console.log("updateTopNine response.data", response.data);
+      dispatch({ type: UPDATE_TOP_NINE_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("updateTopNine error", error);
+      dispatch({
+        type: UPDATE_HABIT_ERROR,
+        payload: error
+      });
+    });
+};
