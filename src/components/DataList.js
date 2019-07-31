@@ -1,10 +1,13 @@
 // Dependencies
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom"
 
 // Objects
 import Data from "./Data";
-import Loader from "react-loader-spinner";
+
+// import Loader from "react-loader-spinner";
+
 import { fetchApi } from "../actions";
 
 // Styles
@@ -14,21 +17,23 @@ const DataList = props => {
     props.fetchApi();
   }, []);
 
-  if (props.isFetching) {
-    return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
-  }
+
+  // if (props.isFetching) {
+  //   return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
+  // }
+ const categories = props.data[0].categories;
 
   console.log("DataList props", props);
   return (
     <section className="category-list">
       <div id="card-container">
-        {/* {categories.map(cate => (
-          <Data
-            key={cate.id}
-            categoryTitle={cate.categoryTitle}
-            topNine={cate.topNine}
-          />
-        ))} */}
+        {categories.map(cate => (
+            <Data
+              key={cate.id}
+              categoryTitle={cate.categoryTitle}
+              topNine={cate.topNine}
+            />
+        ))}
       </div>
     </section>
   );
