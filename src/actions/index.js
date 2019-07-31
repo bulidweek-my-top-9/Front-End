@@ -24,20 +24,6 @@ import {
   SET_UPDATE_FORM
 } from "./types";
 
-// Register a user
-//Server will create user and user id
-
-//Login
-
-// Send username and password
-// If valid, server will return a token
-// Set token to local storage
-
-// Fire off a fetch to the API, include token in header
-// If token is valid, API will return data, if invalid error
-
-// const token = JSON.parse(localStorage.getItem("token"));
-
 export const createAccount = creds => dispatch => {
   console.log("createAccount creds", creds);
   dispatch({ type: CREATE_START });
@@ -74,15 +60,15 @@ export const fetchApi = () => dispatch => {
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios
-    .post("https://api-here.com/", creds)
+    .post("https://top-9-backend.herokuapp.com/api/users/login", creds)
     .then(response => {
       console.log("login response", response);
       localStorage.setItem("token", response.data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: response.data.token });
+      // dispatch({ type: LOGIN_SUCCESS, payload: response.data.token });
     })
     .catch(error => {
       console.log("login error.response", error.response);
-      dispatch({ type: LOGIN_ERROR, payload: error.response.data.error });
+      // dispatch({ type: LOGIN_ERROR, payload: error.response });
     });
 };
 
