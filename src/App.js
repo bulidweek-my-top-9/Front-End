@@ -1,6 +1,6 @@
 // Dependencies
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from "react";
+import { Route } from "react-router-dom";
 
 // Objects
 import DataList from "./components/DataList.js";
