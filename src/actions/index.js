@@ -41,10 +41,6 @@ export const createAccount = creds => dispatch => {
 };
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
-  console.log(
-    `fetchAPI localStore.getItem("userId")`,
-    localStorage.getItem("userId")
-  );
   axios
     .get(
       `https://top-9-backend.herokuapp.com/api/users/${localStorage.getItem(
@@ -57,7 +53,7 @@ export const fetchApi = () => dispatch => {
       }
     )
     .then(response => {
-      console.log("GET response", response);
+      console.log("GET response.data", response.data);
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
     .catch(error => {
@@ -82,20 +78,20 @@ export const login = creds => dispatch => {
     });
 };
 
-export const addTopNine = newTopNine => dispatch => {
-  dispatch({ type: ADD_TOP_NINE_START });
+export const addTopNineMusic = newTopNineMusic => dispatch => {
+  dispatch({ type: ADD_TOP_NINE_MUSIC_START });
   axios
-    .post("https://api-here.com/", newTopNine, {
+    .post("https://api-here.com/", newTopNineMusic, {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(response => {
-      console.log("addTopNine response.data", response.data);
-      dispatch({ type: ADD_TOP_NINE_SUCCESS, payload: response.data });
+      console.log("addTopNineMusic response", response);
+      // dispatch({ type: ADD_TOP_NINE_MUSIC_SUCCESS, payload: response.data });
     })
     .catch(error => {
       console.log("addTopNine error", error);
       dispatch({
-        type: ADD_TOP_NINE_ERROR,
+        type: ADD_TOP_NINE_MUSIC_ERROR,
         payload: error.response
       });
     });
