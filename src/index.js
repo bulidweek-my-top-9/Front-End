@@ -10,7 +10,7 @@ import App from "./App";
 import { store } from "./store";
 
 // Stylings
-import "./index.css";
+import "./index.scss";
 
 const AppWithProvider = (
   <Provider store={store}>
