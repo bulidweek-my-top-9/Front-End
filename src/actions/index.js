@@ -12,9 +12,9 @@ import {
   CREATE_START,
   CREATE_SUCCESS,
   CREATE_ERROR,
-  ADD_TOP_NINE_START,
-  ADD_TOP_NINE_SUCCESS,
-  ADD_TOP_NINE_ERROR,
+  ADD_TOP_NINE_MUSIC_START,
+  ADD_TOP_NINE_MUSIC_SUCCESS,
+  ADD_TOP_NINE_MUSIC_ERROR,
   DELETE_TOP_NINE_START,
   DELETE_TOP_NINE_SUCCESS,
   DELETE_TOP_NINE_ERROR,
@@ -81,9 +81,15 @@ export const login = creds => dispatch => {
 export const addTopNineMusic = newTopNineMusic => dispatch => {
   dispatch({ type: ADD_TOP_NINE_MUSIC_START });
   axios
-    .post("https://api-here.com/", newTopNineMusic, {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
+    .post(
+      `https://top-9-backend.herokuapp.com/api/music${localStorage.getItem(
+        "userId"
+      )}`,
+      newTopNineMusic,
+      {
+        headers: { Authorization: localStorage.getItem("token") }
+      }
+    )
     .then(response => {
       console.log("addTopNineMusic response", response);
       // dispatch({ type: ADD_TOP_NINE_MUSIC_SUCCESS, payload: response.data });
