@@ -63,7 +63,7 @@ export const login = creds => dispatch => {
     .post("https://top-9-backend.herokuapp.com/api/users/login", creds)
     .then(response => {
       console.log("login response", response);
-      // localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.data.token);
       // dispatch({ type: LOGIN_SUCCESS, payload: response.data.token });
     })
     .catch(error => {
