@@ -132,3 +132,10 @@ export const updateTopNine = topNine => dispatch => {
       });
     });
 };
+
+export const setUpdateForm = topNine => {
+  return {
+    type: SET_UPDATE_FORM,
+    payload: topNine
+  };
+};
