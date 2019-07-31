@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { createAccount } from "../actions";
 
-const CreateAccount = () => {
+const CreateAccount = props => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: ""
   });
 
-  handleChanges = event => {
+  const handleChanges = event => {
     event.preventDefault();
     setCredentials({
       ...credentials,
@@ -16,7 +16,7 @@ const CreateAccount = () => {
     });
   };
 
-  createAccount = event => {
+  const createAccount = event => {
     console.log("create account event", event);
     event.preventDefault();
     props.createAccount(credentials);
@@ -51,8 +51,8 @@ const CreateAccount = () => {
 };
 
 const mapStateToProps = state => ({
-  error: state.user.error,
-  fetching: state.user.fetching
+  // error: state.user.error,
+  // fetching: state.user.fetching
 });
 
 export default connect(
