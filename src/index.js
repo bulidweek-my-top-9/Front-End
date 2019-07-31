@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 //import "semantic-ui-css/semantic.css";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // Objects
 import App from "./App";
@@ -13,7 +14,9 @@ import "./index.css";
 
 const AppWithProvider = (
   <Provider store={store}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>
 );
 

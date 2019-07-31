@@ -11,7 +11,17 @@ import {
   LOGIN_ERROR,
   CREATE_START,
   CREATE_SUCCESS,
-  CREATE_ERROR
+  CREATE_ERROR,
+  ADD_TOP_NINE_START,
+  ADD_TOP_NINE_SUCCESS,
+  ADD_TOP_NINE_ERROR,
+  DELETE_TOP_NINE_START,
+  DELETE_TOP_NINE_SUCCESS,
+  DELETE_TOP_NINE_ERROR,
+  UPDATE_TOP_NINE_START,
+  UPDATE_TOP_NINE_SUCCESS,
+  UPDATE_TOP_NINE_ERROR,
+  SET_UPDATE_FORM
 } from "./types";
 
 // Register a user
@@ -26,16 +36,13 @@ import {
 // Fire off a fetch to the API, include token in header
 // If token is valid, API will return data, if invalid error
 
-const token = JSON.parse(localStorage.getItem("token"));
+// const token = JSON.parse(localStorage.getItem("token"));
 
 export const createAccount = creds => dispatch => {
   console.log("createAccount creds", creds);
   dispatch({ type: CREATE_START });
   return axios
-    .post(
-      "https://cors-anywhere.herokuapp.com/https://top-9-backend.herokuapp.com/api/users/register",
-      creds
-    )
+    .post("https://top-9-backend.herokuapp.com/api/users/register", creds)
     .then(response => {
       console.log("createAccount response", response);
       // localStorage.setItem("token", response.data.payload);
@@ -51,7 +58,7 @@ export const fetchApi = () => dispatch => {
   axios
     .get(`https://api-here.com/`, {
       headers: {
-        Authorization: JSON.parse(localStorage.getItem("token"))
+        Authorization: localStorage.getItem("token")
       }
     })
     .then(response => {
@@ -77,4 +84,68 @@ export const login = creds => dispatch => {
       console.log("login error.response", error.response);
       dispatch({ type: LOGIN_ERROR, payload: error.response.data.error });
     });
+};
+
+export const addTopNine = newTopNine => dispatch => {
+  dispatch({ type: ADD_TOP_NINE_START });
+  axios
+    .post("https://api-here.com/", newTopNine, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(response => {
+      console.log("addTopNine response.data", response.data);
+      dispatch({ type: ADD_TOP_NINE_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("addTopNine error", error);
+      dispatch({
+        type: ADD_TOP_NINE_ERROR,
+        payload: error.response.data.error
+      });
+    });
+};
+
+export const deleteTopNine = id => dispatch => {
+  dispatch({ type: DELETE_TOP_NINE_START });
+  axios
+    .delete(`"https://api-here.com/"${id}`, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(response => {
+      console.log("deleteTopNine response.data", response.data);
+      dispatch({ type: DELETE_TOP_NINE_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("deleteTopNine error", error);
+      dispatch({
+        type: DELETE_TOP_NINE_ERROR,
+        payload: error
+      });
+    });
+};
+
+export const updateTopNine = topNine => dispatch => {
+  dispatch({ type: UPDATE_TOP_NINE_START });
+  axios
+    .put(`"https://api-here.com/"${topNine.id}`, topNine, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(response => {
+      console.log("updateTopNine response.data", response.data);
+      dispatch({ type: UPDATE_TOP_NINE_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log("updateTopNine error", error);
+      dispatch({
+        type: UPDATE_TOP_NINE_ERROR,
+        payload: error
+      });
+    });
+};
+
+export const setUpdateForm = topNine => {
+  return {
+    type: SET_UPDATE_FORM,
+    payload: topNine
+  };
 };
