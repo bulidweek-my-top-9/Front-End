@@ -41,13 +41,21 @@ export const createAccount = creds => dispatch => {
 };
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
-  console.log("fetchAPI start");
+  console.log(
+    `fetchAPI localStore.getItem("userId")`,
+    localStorage.getItem("userId")
+  );
   axios
-    .get(`https://api-here.com/`, {
-      headers: {
-        Authorization: localStorage.getItem("token")
+    .get(
+      `https://top-9-backend.herokuapp.com/api/users/${localStorage.getItem(
+        "userId"
+      )}`,
+      {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
       }
-    })
+    )
     .then(response => {
       console.log("GET response", response);
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
@@ -65,6 +73,7 @@ export const login = creds => dispatch => {
     .then(response => {
       console.log("login response", response);
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userId", response.data.user.id);
       dispatch({ type: LOGIN_SUCCESS });
     })
     .catch(error => {
