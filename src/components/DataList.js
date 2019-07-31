@@ -21,13 +21,18 @@ const DataList = props => {
   // if (props.isFetching) {
   //   return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
   // }
+
+
+
  const categories = props.data[0].categories;
+
 
   console.log("DataList props", props);
   return (
     <section className="category-list">
       <div id="card-container">
         {categories.map(cate => (
+
             <Data
               key={cate.id}
               categoryTitle={cate.categoryTitle}
