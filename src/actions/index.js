@@ -41,6 +41,7 @@ export const createAccount = creds => dispatch => {
 };
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
+  console.log("fetchAPI start");
   axios
     .get(`https://api-here.com/`, {
       headers: {
@@ -64,7 +65,7 @@ export const login = creds => dispatch => {
     .then(response => {
       console.log("login response", response);
       localStorage.setItem("token", response.data.token);
-      // dispatch({ type: LOGIN_SUCCESS, payload: response.data.token });
+      dispatch({ type: LOGIN_SUCCESS });
     })
     .catch(error => {
       console.log("login error.response", error.response);
@@ -86,7 +87,7 @@ export const addTopNine = newTopNine => dispatch => {
       console.log("addTopNine error", error);
       dispatch({
         type: ADD_TOP_NINE_ERROR,
-        payload: error.response.data.error
+        payload: error.response
       });
     });
 };

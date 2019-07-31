@@ -10,9 +10,9 @@ import { fetchApi } from "../actions";
 // Styles
 
 const DataList = props => {
-  // useEffect(() => {
-  //   props.fetchApi();
-  // }, []);
+  useEffect(() => {
+    props.fetchApi();
+  }, []);
 
   // if (props.isFetching) {
   //   return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
