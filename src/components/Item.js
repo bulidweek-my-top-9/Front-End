@@ -7,7 +7,7 @@ function Item(props) {
     <div className="item">
       <Icon name="edit" />
       <div>
-        <p>{props.name}</p>
+        <p>{props.categoryTitle}</p>
       </div>
     </div>
   );

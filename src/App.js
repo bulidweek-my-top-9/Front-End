@@ -1,7 +1,9 @@
 // Dependencies
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Data from "./components/Data.js"
+import Data2 from "./components/Data2.js"
+
 
 // Objects
 import DataList from "./components/DataList.js";
@@ -16,10 +18,12 @@ function App() {
   return (
     <div className="App">
       <h1>My Top Nine</h1>
+      <Switch>
       <Route exact path="/" component={Login} />
-      <Route exact path="/create" component={CreateAccount} />
-      <Route path="/home" component={DataList} />
-      <Route path="/home/categories/:categoryTitle" render={props => <Data {...props}/>} />
+      <Route path="/create" component={CreateAccount} />
+      <Route exact path="/home" component={DataList} />
+      <Route path="/home/categories/:categoryTitle" component={Data2} />
+      </Switch>
     </div>
   );
 }

@@ -16,7 +16,13 @@ const Data = props => {
   return (
     <Card className="category">
 
-    <Link to={`/categories/${props.categoryTitle}`}><Card.Header>{props.categoryTitle}</Card.Header></Link>
+    <Link to={{
+      pathname: `/home/categories/${props.categoryTitle}`,
+      state:{
+      categoryTitle: props.categoryTitle,
+      topNine: props.topNine,
+      }
+    }}><Card.Header>{props.categoryTitle}</Card.Header></Link>
       <section className="top-nine-box">
         {boxes.map(box => (
           <Item name={box.name} />
