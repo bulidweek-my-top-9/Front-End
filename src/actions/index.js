@@ -25,7 +25,7 @@ import {
 } from "./types";
 
 export const createAccount = creds => dispatch => {
-  console.log("createAccount creds", creds);
+  //console.log("createAccount creds", creds);
   dispatch({ type: CREATE_START });
   return axios
     .post("https://top-9-backend.herokuapp.com/api/users/register", creds)
