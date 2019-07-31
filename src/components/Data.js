@@ -10,6 +10,8 @@ import EditForm from "./EditForm.js";
 const Data = props => {
   const boxes = props.topNine;
 
+  console.log("Data props", props);
+
   return (
     <Card className="category">
       <Card.Header>{props.categoryTitle}</Card.Header>

@@ -14,11 +14,14 @@ const DataList = props => {
     props.fetchApi();
   }, []);
 
+  const categories = props.data[user].categories;
+
   const categories = props.data[0].categories;
   // if (props.isFetching) {
   //   return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
   // }
 
+  console.log("DataList props", props);
   return (
     <section className="category-list">
       <div id="card-container">

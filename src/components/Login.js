@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { login } from "../actions";
 
 const Login = props => {
@@ -7,7 +8,7 @@ const Login = props => {
     password: ""
   });
 
-  handleChanges = event => {
+  const handleChanges = event => {
     event.preventDefault();
     setCredentials({
       ...credentials,
@@ -15,7 +16,7 @@ const Login = props => {
     });
   };
 
-  login = event => {
+  const login = event => {
     console.log("login event", event);
     event.preventDefault();
     props.login(credentials);
@@ -28,10 +29,16 @@ const Login = props => {
 
   return (
     <div>
-      <div>Welcome to Top 9!</div>;
+      <div>Welcome to Top 9!</div>
       <div className="create-account-header">CREATE ACCOUNT</div>
-      <button>Create Account</button>
-      <form>
+      <button
+        onClick={() => {
+          props.history.push("/create");
+        }}
+      >
+        Create Account
+      </button>
+      <form onSubmit={login}>
         <input
           type="text"
           name="username"
@@ -53,8 +60,8 @@ const Login = props => {
 };
 
 const mapStateToProps = state => ({
-  error: state.user.error,
-  fetching: state.user.fetching
+  // error: state.user.error,
+  // fetching: state.user.fetching
 });
 
 export default connect(

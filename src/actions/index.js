@@ -26,14 +26,32 @@ import {
 // Fire off a fetch to the API, include token in header
 // If token is valid, API will return data, if invalid error
 
-// const token = JSON.parse(localStorage.getItem("token"));
+const token = JSON.parse(localStorage.getItem("token"));
 
+export const createAccount = creds => dispatch => {
+  console.log("createAccount creds", creds);
+  dispatch({ type: CREATE_START });
+  return axios
+    .post(
+      "https://cors-anywhere.herokuapp.com/https://top-9-backend.herokuapp.com/api/users/register",
+      creds
+    )
+    .then(response => {
+      console.log("createAccount response", response);
+      // localStorage.setItem("token", response.data.payload);
+      // dispatch({ type: CREATE_SUCCESS, payload: response.data.payload });
+    })
+    .catch(error => {
+      console.log("createAccount error.response", error.response);
+      // dispatch({ type: CREATE_ERROR, payload: error.response.data.error });
+    });
+};
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
     .get(`https://api-here.com/`, {
       headers: {
-        // Authorization: token
+        Authorization: JSON.parse(localStorage.getItem("token"))
       }
     })
     .then(response => {
@@ -58,21 +76,5 @@ export const login = creds => dispatch => {
     .catch(error => {
       console.log("login error.response", error.response);
       dispatch({ type: LOGIN_ERROR, payload: error.response.data.error });
-    });
-};
-
-export const createAccount = creds => dispatch => {
-  console.log(creds);
-  dispatch({ type: CREATE_START });
-  return axios
-    .post("https://api-here.com/", creds)
-    .then(response => {
-      console.log("createAccount response", response);
-      localStorage.setItem("token", response.data.payload);
-      dispatch({ type: CREATE_SUCCESS, payload: response.data.payload });
-    })
-    .catch(error => {
-      console.log("createAccount error.response", error.response);
-      dispatch({ type: CREATE_ERROR, payload: error.response.data.error });
     });
 };
