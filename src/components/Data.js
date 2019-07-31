@@ -6,33 +6,30 @@ import EditForm from "./EditForm.js";
 
 import styled from "styled-components";
 
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 // Objects
 
 // Styles
 const CatHeader = styled.h3`
-color: #053868;
-font-size: 2rem;
-
-`
+  color: #053868;
+  font-size: 2rem;
+`;
 
 const Data = props => {
-  const boxes = props.topNine;
-  console.log("props", props);
-  console.log("Data props", props);
+  const boxes = props.data;
 
   return (
     <Card className="category">
+      <CatHeader>Favorite Music</CatHeader>
 
-      <CatHeader>{props.categoryTitle}</CatHeader>
-
-
-    <Link to={`/categories/${props.categoryTitle}`}><Card.Header>{props.categoryTitle}</Card.Header></Link>
+      <Link to={`/categories/${props.categoryTitle}`}>
+        <Card.Header>Favorite Music</Card.Header>
+      </Link>
 
       <section className="top-nine-box">
         {boxes.map(box => (
-          <Item name={box.name} />
+          <Item name={box.artist_name} />
         ))}
       </section>
       <EditForm />

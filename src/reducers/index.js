@@ -14,7 +14,50 @@ import {
 // Initial state
 
 const initialState = {
-  data: {}
+  data: {
+    user: {
+      username: "user1",
+      id: 1
+    },
+    top_music: [
+      {
+        artist_name: "AC/DC",
+        user_id: 1
+      },
+      {
+        artist_name: "Daft Punk",
+        user_id: 1
+      },
+      {
+        artist_name: "Clarence Clarity",
+        user_id: 1
+      },
+      {
+        artist_name: "Iceage",
+        user_id: 1
+      },
+      {
+        artist_name: "Aerosmith",
+        user_id: 1
+      },
+      {
+        artist_name: "Aesop Rock",
+        user_id: 1
+      },
+      {
+        artist_name: "America",
+        user_id: 1
+      },
+      {
+        artist_name: "Animal Collective",
+        user_id: 1
+      },
+      {
+        artist_name: "The Beatles",
+        user_id: 1
+      }
+    ]
+  }
 };
 
 // Reducer
