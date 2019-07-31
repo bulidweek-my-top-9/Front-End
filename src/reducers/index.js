@@ -126,6 +126,12 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
         error: null,
         token: localStorage.getItem("token")
       };
+    case CREATE_ERROR:
+      return {
+        ...state,
+        creating: false,
+        error: payload
+      };
     case FETCH_START:
       return {
         ...state,
