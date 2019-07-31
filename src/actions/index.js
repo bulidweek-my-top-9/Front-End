@@ -11,7 +11,17 @@ import {
   LOGIN_ERROR,
   CREATE_START,
   CREATE_SUCCESS,
-  CREATE_ERROR
+  CREATE_ERROR,
+  ADD_TOP_NINE_START,
+  ADD_TOP_NINE_SUCCESS,
+  ADD_TOP_NINE_ERROR,
+  DELETE_TOP_NINE_START,
+  DELETE_TOP_NINE_SUCCESS,
+  DELETE_TOP_NINE_ERROR,
+  UPDATE_TOP_NINE_START,
+  UPDATE_TOP_NINE_SUCCESS,
+  UPDATE_TOP_NINE_ERROR,
+  SET_UPDATE_FORM
 } from "./types";
 
 // Register a user
@@ -32,7 +42,7 @@ export const createAccount = creds => dispatch => {
   console.log("createAccount creds", creds);
   dispatch({ type: CREATE_START });
   return axios
-    .post("https://lifegpa-zach-christy.herokuapp.com/api/login/", creds)
+    .post("https://top-9-backend.herokuapp.com/api/users/register", creds)
     .then(response => {
       console.log("createAccount response", response);
       // localStorage.setItem("token", response.data.payload);
@@ -89,7 +99,7 @@ export const addTopNine = newTopNine => dispatch => {
     .catch(error => {
       console.log("addTopNine error", error);
       dispatch({
-        type: ADD_HABIT_ERROR,
+        type: ADD_TOP_NINE_ERROR,
         payload: error.response.data.error
       });
     });
@@ -127,7 +137,7 @@ export const updateTopNine = topNine => dispatch => {
     .catch(error => {
       console.log("updateTopNine error", error);
       dispatch({
-        type: UPDATE_HABIT_ERROR,
+        type: UPDATE_TOP_NINE_ERROR,
         payload: error
       });
     });
