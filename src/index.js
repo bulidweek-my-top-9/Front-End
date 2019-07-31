@@ -2,7 +2,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-//import "semantic-ui-css/semantic.css";
 import { BrowserRouter as Router } from "react-router-dom";
 
 // Objects
