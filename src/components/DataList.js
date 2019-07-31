@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 // Objects
 import Data from "./Data";
-//import Loader from "react-loader-spinner";
+import Loader from "react-loader-spinner";
 import { fetchApi } from "../actions";
 
 // Styles
@@ -14,9 +14,9 @@ const DataList = props => {
     props.fetchApi();
   }, []);
 
-  // if (props.isFetching) {
-  //   return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
-  // }
+  if (props.isFetching) {
+    return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
+  }
 
   console.log("DataList props", props);
   return (
