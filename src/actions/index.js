@@ -12,9 +12,9 @@ import {
   CREATE_START,
   CREATE_SUCCESS,
   CREATE_ERROR,
-  ADD_TOP_NINE_MUSIC_START,
-  ADD_TOP_NINE_MUSIC_SUCCESS,
-  ADD_TOP_NINE_MUSIC_ERROR,
+  ADD_TOP_NINE_START,
+  ADD_TOP_NINE_SUCCESS,
+  ADD_TOP_NINE_ERROR,
   DELETE_TOP_NINE_START,
   DELETE_TOP_NINE_SUCCESS,
   DELETE_TOP_NINE_ERROR,
@@ -31,12 +31,12 @@ export const createAccount = creds => dispatch => {
     .post("https://top-9-backend.herokuapp.com/api/users/register", creds)
     .then(response => {
       console.log("createAccount response", response);
-      // localStorage.setItem("token", response.data.payload);
-      // dispatch({ type: CREATE_SUCCESS, payload: response.data.payload });
+      localStorage.setItem("token", response.data.payload);
+      dispatch({ type: CREATE_SUCCESS, payload: response.data.payload });
     })
     .catch(error => {
       console.log("createAccount error.response", error.response);
-      // dispatch({ type: CREATE_ERROR, payload: error.response.data.error });
+      dispatch({ type: CREATE_ERROR, payload: error.response.data.error });
     });
 };
 export const fetchApi = () => dispatch => {
@@ -74,30 +74,30 @@ export const login = creds => dispatch => {
     })
     .catch(error => {
       console.log("login error.response", error.response);
-      // dispatch({ type: LOGIN_ERROR, payload: error.response });
+      dispatch({ type: LOGIN_ERROR, payload: error.response });
     });
 };
 
-export const addTopNineMusic = newTopNineMusic => dispatch => {
-  dispatch({ type: ADD_TOP_NINE_MUSIC_START });
+export const addTopNine = newTopNine => dispatch => {
+  dispatch({ type: ADD_TOP_NINE_START });
   axios
     .post(
       `https://top-9-backend.herokuapp.com/api/music${localStorage.getItem(
         "userId"
       )}`,
-      newTopNineMusic,
+      newTopNine,
       {
         headers: { Authorization: localStorage.getItem("token") }
       }
     )
     .then(response => {
-      console.log("addTopNineMusic response", response);
-      // dispatch({ type: ADD_TOP_NINE_MUSIC_SUCCESS, payload: response.data });
+      console.log("addTopNine response", response);
+      dispatch({ type: ADD_TOP_NINE_SUCCESS, payload: response.data });
     })
     .catch(error => {
       console.log("addTopNine error", error);
       dispatch({
-        type: ADD_TOP_NINE_MUSIC_ERROR,
+        type: ADD_TOP_NINE_ERROR,
         payload: error.response
       });
     });

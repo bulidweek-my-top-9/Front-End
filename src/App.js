@@ -4,6 +4,7 @@ import { Route } from "react-router-dom";
 
 // Objects
 import DataList from "./components/DataList.js";
+import MovieList from "./components/MovieList";
 import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount.js";
 import PrivateRoute from "./components/PrivateRoute";
@@ -18,6 +19,7 @@ function App() {
       <Route exact path="/" component={Login} />
       <Route exact path="/create" component={CreateAccount} />
       <PrivateRoute path="/home" component={DataList} />
+      <PrivateRoute path="/movies" component={MovieList} />
     </div>
   );
 }

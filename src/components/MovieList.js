@@ -3,33 +3,35 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 // Objects
-import Data from "./Data";
+import Movie from "./Movie";
+import MovieForm from "./MovieForm";
 import Loader from "react-loader-spinner";
 import { fetchApi } from "../actions";
 
 // Styles
 
-const DataList = props => {
+const MovieList = props => {
   useEffect(() => {
     props.fetchApi();
   }, []);
 
-  if (props.isFetching) {
-    return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
-  }
-
-  console.log("DataList props", props);
+  console.log("MovieList props", props);
   return (
     <div>
-      {/* {props.data.map(data => {
-        return <Data data={data} />;
-      })} */}
+      {props.movies ? (
+        props.movies.map(movie => {
+          return <Movie movie={movie} />;
+        })
+      ) : (
+        <div>Movies incoming!</div>
+      )}
+      <MovieForm />
     </div>
   );
 };
 
 const mapStateToProps = state => {
-  console.log("DataList state", state);
+  console.log("MovieList state", state);
   return {
     error: state.error,
     isFetching: state.isFetching,
@@ -41,4 +43,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { fetchApi }
-)(DataList);
+)(MovieList);
