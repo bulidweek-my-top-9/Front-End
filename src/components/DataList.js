@@ -13,7 +13,7 @@ import { fetchApi } from "../actions";
 // Styles
 
 const DataList = props => {
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
   useEffect(() => {
     props.fetchApi();
   }, []);
@@ -22,7 +22,6 @@ const DataList = props => {
   //   return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
   // }
 
-  console.log("props", props);
   //const categories = props.data[0].categories;
   const favoriteMusic = props.data.top_music;
   console.log(favoriteMusic, "favoriteMusic");
