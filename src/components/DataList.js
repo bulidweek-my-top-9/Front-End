@@ -35,6 +35,7 @@ const DataList = props => {
 };
 
 const mapStateToProps = state => {
+  console.log("DataList state", state);
   return {
     error: state.error,
     isFetching: state.isFetching,
