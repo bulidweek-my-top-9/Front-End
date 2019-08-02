@@ -12,9 +12,9 @@ import {
   CREATE_START,
   CREATE_SUCCESS,
   CREATE_ERROR,
-  ADD_TOP_NINE_START,
-  ADD_TOP_NINE_SUCCESS,
-  ADD_TOP_NINE_ERROR,
+  ADD_TOP_NINE_MUSIC_START,
+  ADD_TOP_NINE_MUSIC_SUCCESS,
+  ADD_TOP_NINE_MUSIC_ERROR,
   DELETE_TOP_NINE_START,
   DELETE_TOP_NINE_SUCCESS,
   DELETE_TOP_NINE_ERROR,
@@ -23,20 +23,6 @@ import {
   UPDATE_TOP_NINE_ERROR,
   SET_UPDATE_FORM
 } from "./types";
-
-// Register a user
-//Server will create user and user id
-
-//Login
-
-// Send username and password
-// If valid, server will return a token
-// Set token to local storage
-
-// Fire off a fetch to the API, include token in header
-// If token is valid, API will return data, if invalid error
-
-// const token = JSON.parse(localStorage.getItem("token"));
 
 export const createAccount = creds => dispatch => {
   console.log("createAccount creds", creds);
@@ -56,13 +42,18 @@ export const createAccount = creds => dispatch => {
 export const fetchApi = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
-    .get(`https://api-here.com/`, {
-      headers: {
-        Authorization: localStorage.getItem("token")
+    .get(
+      `https://top-9-backend.herokuapp.com/api/users/${localStorage.getItem(
+        "userId"
+      )}`,
+      {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
       }
-    })
+    )
     .then(response => {
-      console.log("GET response", response);
+      console.log("GET response.data", response.data);
       dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
     .catch(error => {
@@ -74,33 +65,40 @@ export const fetchApi = () => dispatch => {
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios
-    .post("https://api-here.com/", creds)
+    .post("https://top-9-backend.herokuapp.com/api/users/login", creds)
     .then(response => {
       console.log("login response", response);
       localStorage.setItem("token", response.data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: response.data.token });
+      localStorage.setItem("userId", response.data.user.id);
+      dispatch({ type: LOGIN_SUCCESS });
     })
     .catch(error => {
       console.log("login error.response", error.response);
-      dispatch({ type: LOGIN_ERROR, payload: error.response.data.error });
+      // dispatch({ type: LOGIN_ERROR, payload: error.response });
     });
 };
 
-export const addTopNine = newTopNine => dispatch => {
-  dispatch({ type: ADD_TOP_NINE_START });
+export const addTopNineMusic = newTopNineMusic => dispatch => {
+  dispatch({ type: ADD_TOP_NINE_MUSIC_START });
   axios
-    .post("https://api-here.com/", newTopNine, {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
+    .post(
+      `https://top-9-backend.herokuapp.com/api/music${localStorage.getItem(
+        "userId"
+      )}`,
+      newTopNineMusic,
+      {
+        headers: { Authorization: localStorage.getItem("token") }
+      }
+    )
     .then(response => {
-      console.log("addTopNine response.data", response.data);
-      dispatch({ type: ADD_TOP_NINE_SUCCESS, payload: response.data });
+      console.log("addTopNineMusic response", response);
+      // dispatch({ type: ADD_TOP_NINE_MUSIC_SUCCESS, payload: response.data });
     })
     .catch(error => {
       console.log("addTopNine error", error);
       dispatch({
-        type: ADD_TOP_NINE_ERROR,
-        payload: error.response.data.error
+        type: ADD_TOP_NINE_MUSIC_ERROR,
+        payload: error.response
       });
     });
 };
